@@ -1,0 +1,43 @@
+html, body {
+    background-image: url(../img/johnWickbg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    font-family: 'Avenir', sans-serif;
+}
+
+.container {
+    height: 100%;
+    align-content: center;
+    text-align: center;
+}
+
+.card {
+    height: 350px;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 500px;
+    background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.header h2 {
+    color: white;
+}
+
+.login_btn {
+    background-color: #ED2024;
+    width: 100px;
+}
+
+.login_btn:hover {
+    color: red;
+    background-color: #ED2024;
+}
+
+.links {
+    color: white;
+}
+
+.links a {
+    margin-left: 4px;
+}
