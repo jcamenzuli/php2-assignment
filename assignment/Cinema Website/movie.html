@@ -9,7 +9,56 @@
     	<link rel="stylesheet" href="style.css">
     	<!-- <link rel="stylesheet" href="css/fixed.css"> -->
     </head>
-    <body>
+    <body data-spy="scroll" data-target="#navbarResponsive">
 
+    <!--- Start Home Section -->
+    <div id="home" class="offset">
+        <!--- Navigation -->
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top col-2">
+
+        	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+        		<span class="navbar-toggler-icon"></span>
+        	</button>
+
+        	<div class="collapse navbar-collapse " id="navbarResponsive">
+        		<ul class="navbar-nav col-2">
+        			<li class="nav-item">
+        				<a class="nav-link" href="#home">Home</a>
+        			</li>
+        			<li class="nav-item">
+        				<a class="nav-link" href="#nowshowing">Now Showing</a>
+        			</li>
+        			<li>
+        				<a class="navbar-brand" href="#"><img src="img/fullscreen.png" class="logo" alt="logo"/></a>
+        			</li>
+        			<li class="nav-item">
+        				<a class="nav-link" href="#comingsoon">Coming Soon</a>
+        			</li>
+        			<li class="nav-item">
+        				<a class="nav-link" href="#tickets">About Us</a>
+        			</li>
+        		</ul>
+        	</div>
+        </nav>
+        <!--- End Navigation -->
+        <!--- Start Landing Page Section -->
+        <div class="movie-desc">
+            <div class="landing container">
+                <div class="row">
+                    <div class="col-6">
+                        <h1 class="title">John</h1>
+                    	<h1 class="title">Wick <span>3</span></h1>
+    					<div class="d-flex">
+    						<a class="btn btn-danger btn-lg mx-2" href="#">Book Tickets</a>
+    						<a class="youtube" href="https://www.youtube.com/watch?v=M7XM597XO94" target="_blank">
+    							<i class="fab fa-youtube fa-4x d-block"></i>
+    						</a>
+    					</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--- End Landing Page Section -->
+    </div>
     </body>
 </html>
