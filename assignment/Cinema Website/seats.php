@@ -42,25 +42,43 @@
         </nav>
         <!--- End Navigation -->
         <!--- Start Landing Page Section -->
-        <div class="movie-desc">
-                    <div class="row">
-                        <div class="info col-6">
-                            <h1 class="movie-title">Captain Marvel</h1>
-                            <div class="details d-flex">
-                                <h4 class="genre mr-4">Genre: Action, Adventure, Sci-Fi</h4>
-                                <h4 class="duration ml-4">Duration: 123 min</h4>
-                            </div>
-                            <div class="movie-sum mb-4">
-                                <p class="text-sm-left">After crashing an experimental aircraft, Air Force pilot Carol Danvers is discovered by the Kree and trained as a member of the elite Starforce Military under the command of her mentor Yon-Rogg. Six years later, after escaping to Earth while under attack by the Skrulls, Danvers begins to discover there's more to her past. With help from S.H.I.E.L.D. agent Nick Fury, they set out to unravel the truth.</p>
+        <div class="tickets-desc">
+            <div class="row">
+                        <div class="info col-12">
+                            <h1 class="title-tickets">Choose Your Seats</h1>
+                            <div class="seat-selection offset">
+                                <div class="container">
+                                    <div class="screen mb-4 col-12">
+                                        <img src="img/screen.png" alt="screen">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <form id="reservation" method="post" action="">
+                                            <section id="seats" class="seats">
+                            			<?php
+                            				$rows = 10;
+                            				$seats = 15;
+                            				for ($row = 0; $row < $rows; $row++)
+                            				{
+                            					for ($seat = 1; $seat <= $seats; $seat++)
+                            					{
+                            						$seat_num = ($row * $seats) + $seat;
+
+                            						echo '<input id="seat-', $seat_num,' " class="seat-select" type="checkbox" value="', $seat_num,'" name="seats[]" >';
+                            	                    echo '<label for="seat-', $seat_num,' " class="seat"></label>';
+                            					}
+                            				}
+                            			?>
+
+                                            </section>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="d-flex">
-        						<a class="btn btn-danger btn-lg mx-2" href="#">Book Tickets</a>
-                                <a class="btn btn-dark btn-lg mx-2" href="#">Watch Trailer</a>
-        				</div>
-                </div>
-                <div class="poster">
-                    <a href="movie.html"><img src="img/captain-marvel.jpg" class="poster" alt="marvel"/></a>
-                </div>
+        						<a class="btn btn-danger btn-lg mx-2 mt-4" href="#">Next</a>
+        				    </div>
+                        </div>
             </div>
         </div>
         <!--- End Landing Page Section -->
@@ -69,9 +87,9 @@
     <div class="row justify-content-center">
     	<div class="col-md-5 text-center">
     		<img src="img/fullscreen.png" class="footerlogo" alt="logo">
-    		<p class="footertext mt-3"> The first IMAX cinema in Malta</p>
+    		<p class="footertext mt-3"> The first IMAX cinema in Malta.</p>
     		<strong>Contact Info</strong>
-            <p class="mt-3">contactus@fullscreen.com</p>
+    		<p class="mt-3">contactus@fullscreen.com</p>
             <p>+356 2190 9999</p>
     	</div>
     </div>

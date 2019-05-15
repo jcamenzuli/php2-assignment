@@ -10,6 +10,7 @@ body {
   height: 4rem;
   margin-top: -4rem;
 }
+
 /*---Navigation --*/
 .navbar {
   text-align: center;
@@ -20,7 +21,7 @@ body {
   background-color: rgba(0, 0, 0, 0.6)!important;
 }
 
-.navbar nav {
+.navbar-nav {
     width: 100%;
 }
 
@@ -45,6 +46,20 @@ body {
 }
 
 /*--- Landing Page --*/
+
+.cinema-num {
+    text-align: center;
+}
+
+.details * {
+    opacity: 0.5;
+    font-size: 1.3rem;
+    margin-bottom: 25px;
+}
+
+.detail-movie {
+    margin: auto;
+}
 
 .landing {
     padding-top: 50vh;
@@ -85,6 +100,11 @@ a:hover {
   background-image: url(img/john-wick.jpg);
 }
 
+.info {
+    margin-left: 120px;
+    text-align: left;
+}
+
 .title {
     font-size: 7rem;
     font-weight: bold;
@@ -122,13 +142,23 @@ a:hover {
 }
 
 .movie-desc {
-    width: 100%;
-    height: 100vh;
-    background-image: url(img/john-wick.jpg);
+    background-image: url(img/cinema.jpg);
     background-size: cover;
     background-position: center center;
+    height: 100vh;
+    width: 100%;
 }
 
+.movie-sum {
+    font-size: 1.2rem;
+}
+
+.movie-title {
+    font-size: 5rem;
+    font-weight: bold;
+    margin-top: 180px;
+    margin-bottom: 30px;
+}
 
 .jumbotron{
   margin-bottom: 0;
@@ -155,6 +185,13 @@ h1.heading{
   margin-bottom: 20px;
 }
 
+.title-tickets {
+    font-size: 4rem;
+    font-weight: bold;
+    margin-top: 180px;
+    margin-bottom: 30px;
+}
+
 .narrow{
   width: 75%;
   margin: 1.5rem auto;
@@ -163,6 +200,61 @@ h1.heading{
 
 .narrow h1{
   font-size: 10rem;
+}
+
+.poster {
+    margin: auto;
+    padding-top: 100px;
+    width: 26rem;
+    text-align: center;
+}
+
+.seat {
+    float: left;
+    display: block;
+    margin: 4px 4px;
+    background: #D82052;
+    width: 20px;
+    height: 20px;
+    border-radius: 6px;
+}
+
+.seat-select {
+    display: none;
+    margin:;
+}
+
+.seat:hover{
+    background: #E23866;
+}
+
+.seat-select:checked+.seat {
+    background: #5DBE60;
+}
+
+
+.seat:checked {
+    content: "X";
+}
+
+.seat-selction {
+    max-width: 30%!important;
+}
+
+.seat-selection img {
+    margin: 50px;
+}
+
+.seats {
+    margin: 0 1px;
+}
+
+.tickets-desc{
+    background-image: url(img/cinema.jpg);
+    background-size: cover;
+    background-position: center center;
+    height: 100vh;
+    width: 100%;
 }
 
 /*--- Footer ---*/
@@ -180,6 +272,7 @@ footer {
 .footertext {
   margin-top: 0.2rem;
 }
+
 
 /*============ BOOTSTRAP BREAK POINTS:
 
