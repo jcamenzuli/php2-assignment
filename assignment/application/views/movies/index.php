@@ -75,7 +75,7 @@
 
 				<div class="col-md-4">
 					<div class="nowshowing">
-						<a href="movie.php"><img src=<?php base_url('img/marvel.jpg') ?> class="moviesNow" alt="marvel"/></a>
+						<a href="movie.php"><img src="<?php echo base_url('img/marvel.jpg') ?>" class="moviesNow" alt="marvel"/></a>
 						<h3>Captain Marvel</h3>
 						<p class="textDuration">Duration: 180 min</p>
 					</div>
