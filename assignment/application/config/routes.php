@@ -65,5 +65,7 @@ $route['register/submit'] = 'system/do_register';
 $route['login'] = 'system/login';
 $route['login/submit'] = 'system/do_login';
 
+$route['logout'] = 'system/logout';
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

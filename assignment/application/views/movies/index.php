@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>FULLSCREEN</title>
-	<link rel="icon"  href="img/fullscreenTab.png">
+	<link rel="icon"  href="<?php echo base_url('img/fullscreenTab.png')?>">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" href="<?php echo base_url('style.css'); ?>">
 	<!-- <link rel="stylesheet" href="css/fixed.css"> -->
@@ -30,13 +30,19 @@
     				<a class="nav-link" href="#nowshowing">Now Showing</a>
     			</li>
     			<li>
-    				<a class="navbar-brand" href="#"><img src="img/fullscreen.png" class="logo" alt="logo"/></a>
+    				<a class="navbar-brand" href="#"><img src="<?php echo base_url('img/fullscreen.png')?>" class="logo" alt="logo"/></a>
     			</li>
     			<li class="nav-item col">
     				<a class="nav-link" href="#comingsoon">Coming Soon</a>
     			</li>
     			<li class="nav-item col">
+                    <?php $is_logged = $this->system->confirm_session();
+                    if(!$is_logged):
+                     ?>
     				<a class="nav-link" href="<?php echo site_url("login"); ?>">Log In</a>
+                <?php else: ?>
+                    <a class="nav-link" href="<?php echo site_url("logout"); ?>">Log Out</a>
+                <?php endif; ?>
     			</li>
     		</ul>
     	</div>
@@ -50,7 +56,7 @@
                     <h1 class="title">John</h1>
                 	<h1 class="title">Wick <span>3</span></h1>
 					<div class="d-flex">
-						<a class="btn btn-danger btn-lg mx-2" href="#">Book Tickets</a>
+						<a class="btn btn-danger btn-lg mx-2" href="<?php echo site_url('movie')?>">Book Tickets</a>
 						<a class="youtube" href="https://www.youtube.com/watch?v=M7XM597XO94" target="_blank">
 							<i class="fab fa-youtube fa-4x d-block"></i>
 						</a>

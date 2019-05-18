@@ -35,7 +35,7 @@
         				<a class="nav-link" href="#comingsoon">Coming Soon</a>
         			</li>
         			<li class="nav-item col">
-        				<a class="nav-link" href="#tickets">About Us</a>
+        				<a class="nav-link" href="<?php echo site_url("login"); ?>">Log In</a>
         			</li>
         		</ul>
         	</div>

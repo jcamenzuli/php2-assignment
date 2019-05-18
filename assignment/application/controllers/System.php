@@ -62,6 +62,20 @@ class System extends CI_Controller
 
         // 7. Keep the information in the session and redirect to the homepage.
         $this->session->set_userdata($data);
+
+        if ((3 & $role) == $role)
+        {
+            // dashboard
+        }
+        else {
+            redirect('/');
+        }
+    }
+
+    function logout()
+    {
+        $this->load->view('system/logout');
+        $this->session->sess_destroy();
         redirect('/');
     }
 
