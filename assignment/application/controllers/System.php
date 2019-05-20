@@ -65,10 +65,10 @@ class System extends CI_Controller
 
         if ((3 & $role) == $role)
         {
-            // dashboard
+            redirect('http://dashboard.assignment.local');
         }
         else {
-            redirect('/');
+            redirect('http://assignment.local');
         }
     }
 
