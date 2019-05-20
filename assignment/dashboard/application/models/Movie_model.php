@@ -77,7 +77,7 @@ class Movie_model extends CI_Model
     }
 
     // Retrieves the categories for an article
-    public function get_movie_genre($article_id)
+    public function get_movie_genre($movie_id)
     {
         $results = $this->db->select('genre_id')
                             ->get_where('tbl_movie_genre', ['movies_id' => $movie_id])

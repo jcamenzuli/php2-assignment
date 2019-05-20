@@ -1,31 +1,47 @@
-<?php echo form_open_multipart("article/edit/{$article['slug']}/submit", ['class' => 'row content']); ?>
+<?php echo form_open_multipart("movie/edit/{$movie['slug']}/submit", ['class' => 'row content']); ?>
     <div class="col-12 col-lg-9">
         <div class="card">
             <div class="card-body">
-                <?php echo form_error('article-title'); ?>
+                <?php echo form_error('movie-title'); ?>
                 <?php echo custom_form_input('Title', [
-                    'name'          => 'article-title',
+                    'name'          => 'movie-title',
                     'class'         => 'form-control',
-                    'placeholder'   => 'Article Title',
-                    'value'         => $article['title'] ?: set_value('article-title')
+                    'placeholder'   => 'Movie Title',
+                    'value'         => $movie['title'] ?: set_value('movie-title')
                 ]); ?>
 
-                <?php echo form_error('article-text'); ?>
+                <?php echo form_error('movie-description'); ?>
                 <?php echo form_textarea([
                     'rows'          => 8,
                     'cols'          => 80,
-                    'name'          => 'article-text',
-                    'placeholder'   => 'This is the start of your next work!',
+                    'name'          => 'movie-description',
+                    'placeholder'   => 'Enter description of the movie',
                     'class'         => 'form-control mb-3',
-                    'value'         => $article['text'] ?: set_value('article-text')
+                    'value'         => $movie['description'] ?: set_value('movie-description')
                 ]); ?>
 
-                <img src="<?php echo base_url($article['image']); ?>" alt="" class="d-block w-100 mb-3">
+                <?php echo form_error('movie-runtime'); ?>
+                <?php echo custom_form_input('Runtime', [
+                    'name'          => 'movie-runtime',
+                    'class'         => 'form-control',
+                    'placeholder'   => 'Movie Runtime',
+                    'value'         => $movie['runtime'] ?: set_value('movie-runtime')
+                ]); ?>
 
-                <?php echo form_error('article-image'); ?>
+                <?php echo form_error('movie-director'); ?>
+                <?php echo custom_form_input('Director', [
+                    'name'          => 'movie-director',
+                    'class'         => 'form-control',
+                    'placeholder'   => 'Movie Director',
+                    'value'         => $movie['director'] ?: set_value('movie-director')
+                ]); ?>
+
+                <img src="<?php echo base_url($movie['image']); ?>" alt="" class="d-block w-100 mb-3">
+
+                <?php echo form_error('movie-image'); ?>
                 <?php echo custom_form_upload('Choose Image', [
                     'type'          => 'file',
-                    'name'          => 'article-image',
+                    'name'          => 'movie-image',
                     'accept'        => 'image/*'
                 ]); ?>
                 <small>Upload a new image to replace the current one.</small>
@@ -36,12 +52,12 @@
         <div class="card">
             <div class="card-body">
                 <?php echo form_multiselect(
-                    'article-categories[]',
-                    $categories,
-                    $article['categories'] ?: set_value('article-categories'),
+                    'movie-genre[]',
+                    $genre,
+                    $movie['genre'] ?: set_value('movie-genre'),
                     [
                         'class' => 'custom-select form-control',
-                        'size'  => count($categories)
+                        'size'  => count($genre)
                     ]
                 ); ?>
 

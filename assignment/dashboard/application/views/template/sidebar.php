@@ -1,6 +1,6 @@
 <aside id="sidebar" class="collapse d-block">
     <header class="navbar navbar-light align-items-stretch">
-        <h4 class="navbar-brand">News Portal</h4>
+        <h4 class="navbar-brand">FULLSCREEN Cinema</h4>
 
         <a href="#sidebar" class="toggle-sidebar ml-auto d-block d-md-none border-left" data-toggle="collapse">
             <i class="icon fas fa-arrow-left"></i>

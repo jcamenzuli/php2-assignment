@@ -4,10 +4,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Movie extends FS_Controller
 {
 	// This is the folder path all text will upload to.
-	var $text_folder = 'uploads/articles/text';
+	var $text_folder = 'uploads/movies/text';
 
 	// This is the folder path all text will upload to.
-	var $images_folder = 'uploads/articles/images';
+	var $images_folder = 'uploads/movies/images';
 
 	// Load the necessary libraries
 	function __construct()
@@ -49,28 +49,28 @@ class Movie extends FS_Controller
 
 	public function delete($slug = NULL)
 	{
-		// Check if the article exists, and if it does
+		// Check if the movie exists, and if it does
 		// assign it to a variable.
-		if (!$movie = $this->movie_model->get_article($slug))
+		if (!$movie = $this->movie_model->get_movie($slug))
 		{
 			show_404();
 		}
 
-		// Start by deleting the files for this article.
-		$path = "{$this->text_folder}/{$article['id']}.txt";
+		// Start by deleting the files for this movie.
+		$path = "{$this->text_folder}/{$movie['id']}.txt";
 		if (file_exists($path)) unlink($path);
 
 		// Delete the file and redirect.
-		$this->article_model->delete_article($slug);
+		$this->movie_model->delete_movie($slug);
 
-		redirect('article');
+		redirect('movie');
 	}
 
 	public function edit($slug = NULL, $submit = FALSE)
 	{
-		// Check if the article exists, and if it does
+		// Check if the movie exists, and if it does
 		// assign it to a variable.
-		if (!$article = $this->article_model->get_article($slug))
+		if (!$movie = $this->movie_model->get_movie($slug))
 		{
 			show_404();
 		}
@@ -78,23 +78,23 @@ class Movie extends FS_Controller
 		// Check that the form was sent, if so do another process.
 		if ($submit !== FALSE)
 		{
-			return $this->_do_edit($article);
+			return $this->_do_edit($movie);
 		}
 
 		// loads the user-agent library to identify platform/browser.
 		$this->load->library(['user_agent' => 'ua']);
 
-		$article['text'] = read_file("{$this->text_folder}/{$article['id']}.txt");
-		$article['categories'] = $this->article_model->get_article_categories($article['id']);
-		$article['image'] = $this->_get_image_path($article['id']);
+		$movie['description'] = read_file("{$this->text_folder}/{$movie['id']}.txt");
+		$movie['genre'] = $this->movie_model->get_movie_genre($movie['id']);
+		$movie['image'] = $this->_get_image_path($movie['id']);
 
 		$data = [
-			'article'		=> $article,
-			'categories'	=> $this->article_model->get_categories_array(),
-			'platform'		=> strtolower($this->ua->platform())
+			'movie'		     => $movie,
+			'genre'	         => $this->movie_model->get_genres_array(),
+			'platform'		 => strtolower($this->ua->platform())
 		];
 
-		$this->build('article/edit', $data);
+		$this->build('movie/edit', $data);
 	}
 
 	// Process the creation form.
@@ -166,7 +166,7 @@ class Movie extends FS_Controller
 	}
 
 	// Process for the edit form.
-	private function _do_edit($article)
+	private function _do_edit($movie)
 	{
 		// 1. Load the form_validation library.
 		$this->load->library(['form_validation' => 'fv']);
@@ -174,22 +174,32 @@ class Movie extends FS_Controller
 		// 2. Set the validation rules.
 		$rules = [
 			[
-				'field'	=> 'article-title',
+				'field'	=> 'movie-title',
 				'label'	=> 'Title',
 				'rules' => 'required|min_length[5]'
 			],
-			[
-				'field'	=> 'article-text',
+            [
+				'field'	=> 'movie-description',
 				'label'	=> 'Content',
 				'rules' => 'required|min_length[50]'
+			],
+            [
+				'field'	=> 'movie-runtime',
+				'label'	=> 'Runtime',
+				'rules' => 'required'
+			],
+            [
+				'field'	=> 'movie-director',
+				'label'	=> 'Director',
+				'rules' => 'required'
 			]
 		];
 
 		// if a file was uploaded, we'll add the rules to the array.
-		if ($_FILES['article-image']['name'] != '')
+		if ($_FILES['movie-image']['name'] != '')
 		{
 			$rules[] = [
-				'field'	=> 'article-image',
+				'field'	=> 'movie-image',
 				'label'	=> 'Image',
 				'rules' => 'file_size_max[2mb]|file_allowed_type[gif,jpg,png]'
 			];
@@ -200,40 +210,40 @@ class Movie extends FS_Controller
 		// 3. If the validation failed, we'll reload.
 		if ($this->fv->run() === FALSE)
 		{
-			return $this->edit($article['id']);
+			return $this->edit($movie['id']);
 		}
 
 		// 4. Get the inputs from the form.
-		$title		= $this->input->post('article-title');
-		$text		= $this->input->post('article-text');
-		$categories = $this->input->post('article-categories') ?: [];
+		$title		         = $this->input->post('movie-title');
+		$description		 = $this->input->post('movie-description');
+		$genre               = $this->input->post('movie-genre') ?: [];
 
 		// 5. Check if anything has changed in the form.
-		if ($article['title'] != $title)
+		if ($movie['title'] != $title)
 		{
 			// change the entry in the database.
-			if (!$this->article_model->update_article($article['id'], $title))
+			if (!$this->movie_model->update_movie($movie['id'], $title))
 			{
-				exit("Your article could not be edited. Please go back and try again.");
+				exit("This movie could not be edited. Please go back and try again.");
 			}
 		}
 
-		if (!$this->article_model->replace_categories($article['id'], $categories))
+		if (!$this->movie_model->replace_genre($movie['id'], $genre))
 		{
-			exit("Your article could not be edited. Please go back and try again.");
+			exit("This movie could not be edited. Please go back and try again.");
 		}
 
 		// 6. If the folder path is missing, create it.
 		$this->_build_dir($this->text_folder);
-		if (!write_file("{$this->text_folder}/{$article['id']}.txt", $text))
+		if (!write_file("{$this->text_folder}/{$movie['id']}.txt", $text))
 		{
 			// delete the record.
-			exit("Your article could not be posted. Please go back and try again.");
+			exit("This movie could not be posted. Please go back and try again.");
 		}
 
 		$this->_build_dir($this->images_folder);
-		if ($_FILES['article-image']['name'] != '') $this->_upload_image($article['id']);
-		redirect('article');
+		if ($_FILES['movie-image']['name'] != '') $this->_upload_image($movie['id']);
+		redirect('movie');
 	}
 
 	// Checks that the folder exists, creates it if not.
@@ -254,10 +264,10 @@ class Movie extends FS_Controller
 		}
 	}
 
-	// Uploads an image to a specific folder using the article id as name.
+	// Uploads an image to a specific folder using the movie id as name.
 	private function _upload_image($name)
 	{
-		// Since we're using this function for the article edit page,
+		// Since we're using this function for the movie edit page,
 		// we also need to delete the existing files first.
 		$files = glob("{$this->images_folder}/{$name}.*");
 		foreach ($files as $file) unlink($file);

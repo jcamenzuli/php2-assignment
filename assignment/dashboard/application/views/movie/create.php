@@ -15,9 +15,9 @@
                     'rows'          => 8,
                     'cols'          => 80,
                     'name'          => 'movie-description',
-                    'placeholder'   => 'This is the start of your next work!',
+                    'placeholder'   => 'Enter description of the movie',
                     'class'         => 'form-control mb-3',
-                    'value'         => set_value('article-text')
+                    'value'         => set_value('movie-description')
                 ]); ?>
 
                 <?php echo form_error('movie-runtime'); ?>
