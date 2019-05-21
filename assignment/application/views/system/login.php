@@ -25,7 +25,7 @@
             <div class="card-footer text-center">
                 <button type="submit" class="btn btn-primary">Login</button>
                 <small class="d-block pt-1">
-                    or <a href="<?php echo site_url('register'); ?>">register</a>
+                    or <a href="<?php echo site_url('register'); ?>">Register</a>
                 </small>
             </div>
         </div>

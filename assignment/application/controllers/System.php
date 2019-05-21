@@ -63,7 +63,7 @@ class System extends CI_Controller
         // 7. Keep the information in the session and redirect to the homepage.
         $this->session->set_userdata($data);
 
-        if ((3 & $role) == $role)
+        if ((3 & $data['role']) == $data['role'])
         {
             redirect('http://dashboard.assignment.local');
         }

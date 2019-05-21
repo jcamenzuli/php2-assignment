@@ -70,7 +70,7 @@ class Movie extends FS_Controller
 	{
 		// Check if the movie exists, and if it does
 		// assign it to a variable.
-		if (!$movie = $this->movie_model->get_movie($slug))
+		if (!($movie = $this->movie_model->get_movie($slug)))
 		{
 			show_404();
 		}
@@ -228,7 +228,7 @@ class Movie extends FS_Controller
 			}
 		}
 
-		if (!$this->movie_model->replace_genre($movie['id'], $genre))
+		if (!$this->movie_model->replace_genres($movie['id'], $genre))
 		{
 			exit("This movie could not be edited. Please go back and try again.");
 		}

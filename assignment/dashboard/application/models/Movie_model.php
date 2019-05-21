@@ -66,6 +66,7 @@ class Movie_model extends CI_Model
         return $this->db
                     ->get_where('tbl_movies', ['slug' => $slug])
                     ->row_array();
+
     }
 
     // Retrieves articles from the database.
@@ -121,8 +122,8 @@ class Movie_model extends CI_Model
                 foreach ($genres as $gen)
                 {
                     $inserts[] = [
-                        'movie_id'    => $id,
-                        'genre_id'   => $cat
+                        'movies_id'    => $id,
+                        'genre_id'   => $gen
                     ];
                 }
                 $this->db->insert_batch('tbl_movie_genre', $inserts);
