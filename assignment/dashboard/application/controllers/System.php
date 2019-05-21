@@ -128,4 +128,10 @@ class System extends FS_Controller
         redirect('login');
     }
 
+    function logout()
+    {
+        $this->load->view('system/logout');
+        $this->session->sess_destroy();
+        redirect('/');
+    }
 }

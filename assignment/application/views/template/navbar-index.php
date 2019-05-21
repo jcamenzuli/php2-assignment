@@ -25,13 +25,12 @@
                     <?php $is_logged = $this->system->confirm_session();
                     if(!$is_logged):
                      ?>
-    				<a class="nav-link" href="<?php echo site_url("login"); ?>">Log In</a>
+    				<a class="nav-link" href="<?php echo ("http://dashboard.assignment.local/index.php/login"); ?>">Log In</a>
                 <?php else: ?>
-                    <a class="nav-link" href="<?php echo site_url("logout"); ?>">Log Out</a>
+                    <a class="nav-link" href="<?php echo ("http://dashboard.assignment.local/index.php/logout"); ?>">Log Out</a>
                 <?php endif; ?>
     			</li>
     		</ul>
     	</div>
     </nav>
     <!--- End Navigation -->
-    

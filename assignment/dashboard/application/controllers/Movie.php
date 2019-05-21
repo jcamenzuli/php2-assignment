@@ -210,7 +210,7 @@ class Movie extends FS_Controller
 		// 3. If the validation failed, we'll reload.
 		if ($this->fv->run() === FALSE)
 		{
-			return $this->edit($movie['id']);
+			return $this->edit($movie['slug']);
 		}
 
 		// 4. Get the inputs from the form.
