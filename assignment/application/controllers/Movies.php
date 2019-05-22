@@ -20,9 +20,15 @@ class Movies extends CI_Controller {
 	 */
 	public function index()
 	{
+        $movies = $this->movie_model->get_movies();
+
+        $data = [
+            'movies' => $movies
+        ];
+
         $this->load->view('template/header');
         $this->load->view('template/navbar-index');
-        $this->load->view('movies/index');
+        $this->load->view('movies/index', $data);
         $this->load->view('template/footer');
 	}
 }

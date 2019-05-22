@@ -30,53 +30,21 @@
 			</div>
 			<div class="row text-center">
 
+<?php
+        foreach($movies as $movie):
+            $images = glob("uploads/movies/images/{$movie['id']}.*");
+            if (count($images) > 0) $images = $images[0];
+?>
 				<div class="col-md-4">
 					<div class="nowshowing">
-						<a href="movie.php"><img src="<?php echo base_url('img/marvel.jpg') ?>" class="moviesNow" alt="marvel"/></a>
-						<h3>Captain Marvel</h3>
-						<p class="textDuration">Duration: 180 min</p>
+						<a href="<?php echo site_url("movies/{$movie['slug']}"); ?>">
+                            <img src="<?php echo base_url('img/marvel.jpg') ?>" class="moviesNow" alt="marvel"/></a>
+						<h3><?php echo $movie['title']; ?></h3>
+						<h4><?php echo $movie['movie_genre'] ?> <?php echo $movie['runtime']. "minutes" ?></h4>
 					</div>
 				</div>
+<?php endforeach; ?>
 
-				<div class="col-md-4">
-					<div class="nowshowing">
-						<a href="#"><img src="img/marvel.jpg" class="moviesNow" alt="marvel"/></a>
-						<h3>Captain Marvel</h3>
-						<p class="textDuration">Duration: 180 min</p>
-					</div>
-				</div>
-
-				<div class="col-md-4">
-					<div class="nowshowing">
-						<a href="#"><img src="img/marvel.jpg" class="moviesNow" alt="marvel"/></a>
-						<h3>Captain Marvel</h3>
-						<p class="textDuration">Duration: 180 min</p>
-					</div>
-				</div>
-
-				<div class="col-md-4">
-					<div class="nowshowing">
-						<a href="#"><img src="img/marvel.jpg" class="moviesNow" alt="marvel"/></a>
-						<h3>Captain Marvel</h3>
-						<p class="textDuration">Duration: 180 min</p>
-					</div>
-				</div>
-
-				<div class="col-md-4">
-					<div class="nowshowing">
-						<a href="#"><img src="img/marvel.jpg" class="moviesNow" alt="marvel"/></a>
-						<h3>Captain Marvel</h3>
-						<p class="textDuration">Duration: 180 min</p>
-					</div>
-				</div>
-
-				<div class="col-md-4">
-					<div class="nowshowing">
-						<a href="#"><img src="img/marvel.jpg" class="moviesNow" alt="marvel"/></a>
-						<h3><a href="#">Captain Marvel</a></h3>
-						<p class="textDuration">Duration: 180 min</p>
-					</div>
-				</div>
 			</div>
 			<!--- End of Row -->
 		</div>

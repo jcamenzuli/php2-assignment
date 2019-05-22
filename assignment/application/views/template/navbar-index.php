@@ -22,13 +22,7 @@
     				<a class="nav-link" href="#comingsoon">Coming Soon</a>
     			</li>
     			<li class="nav-item col">
-                    <?php $is_logged = $this->system->confirm_session();
-                    if(!$is_logged):
-                     ?>
-    				<a class="nav-link" href="<?php echo ("http://dashboard.assignment.local/index.php/login"); ?>">Log In</a>
-                <?php else: ?>
-                    <a class="nav-link" href="<?php echo ("http://dashboard.assignment.local/index.php/logout"); ?>">Log Out</a>
-                <?php endif; ?>
+    				<a class="nav-link" href="http://dashboard.assignment.local/index.php/login">Log In</a>
     			</li>
     		</ul>
     	</div>
