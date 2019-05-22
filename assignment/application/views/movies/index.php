@@ -37,7 +37,7 @@
 ?>
 				<div class="col-md-4">
 					<div class="nowshowing">
-						<a href="<?php echo site_url("movies/{$movie['slug']}"); ?>">
+						<a href="<?php echo site_url("movies/view/{$movie['slug']}"); ?>">
                             <img src="<?php echo base_url('img/marvel.jpg') ?>" class="moviesNow" alt="marvel"/></a>
 						<h3><?php echo $movie['title']; ?></h3>
 						<h4><?php echo $movie['movie_genre'] ?> <?php echo $movie['runtime']. "minutes" ?></h4>

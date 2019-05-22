@@ -31,4 +31,18 @@ class Movies extends CI_Controller {
         $this->load->view('movies/index', $data);
         $this->load->view('template/footer');
 	}
+
+    public function view($slug = NULL)
+	{
+        $movie = $this->movie_model->get_movie($slug);
+
+        $data = [
+            'movie' => $movie
+        ];
+
+        $this->load->view('template/header');
+        $this->load->view('template/navbar');
+        $this->load->view('movies/movie', $data);
+        $this->load->view('template/footer');
+	}
 }
