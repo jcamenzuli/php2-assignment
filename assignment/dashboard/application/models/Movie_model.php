@@ -3,7 +3,7 @@
 class Movie_model extends CI_Model
 {
     // Creates an article and assigns its categories.
-    public function create_movie($title, $genre, $runtime, $director)
+    public function create_movie($title, $genre, $runtime, $director, $video)
     {
         // Create a slug from the title, and make sure we have categories.
         $slug = url_title($title, 'dash', TRUE);
@@ -18,6 +18,7 @@ class Movie_model extends CI_Model
                 'title'         => $title,
                 'runtime'       => $runtime,
                 'director'      => $director,
+                'video'         => $video,
                 'slug'           => $slug
             ];
             $this->db->insert('tbl_movies', $movies);

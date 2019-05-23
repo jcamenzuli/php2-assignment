@@ -125,6 +125,11 @@ class Movie extends FS_Controller
 				'label'	=> 'Director',
 				'rules' => 'required'
 			],
+            [
+				'field'	=> 'movie-video',
+				'label'	=> 'Video',
+				'rules' => 'required'
+			],
 			[
 				'field'	=> 'movie-image',
 				'label' => 'Image',
@@ -144,10 +149,11 @@ class Movie extends FS_Controller
         $runtime    = $this->input->post('movie-runtime');
 		$description	= $this->input->post('movie-description');
         $director       =$this->input->post('movie-director');
-		$genre = $this->input->post('movie-genres') ?: [];
+        $video          =$this->input->post('movie-video');
+		$genre          =$this->input->post('movie-genres') ?: [];
 
 		// 5. Try to insert the data in its tables, and get back the ID.
-		$movie_id = $this->movie_model->create_movie($title, $genre, $runtime, $director);
+		$movie_id = $this->movie_model->create_movie($title, $genre, $runtime, $director, $video);
 		if ($movie_id === FALSE)
 		{
 			exit("Your movie could not be posted. Please go back and try again.");
@@ -192,6 +198,11 @@ class Movie extends FS_Controller
             [
 				'field'	=> 'movie-director',
 				'label'	=> 'Director',
+				'rules' => 'required'
+			],
+            [
+				'field'	=> 'movie-video',
+				'label'	=> 'Video',
 				'rules' => 'required'
 			]
 		];

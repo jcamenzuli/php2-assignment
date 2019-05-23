@@ -36,6 +36,14 @@
                     'value'         => set_value('movie-director')
                 ]); ?>
 
+                <?php echo form_error('movie-video'); ?>
+                <?php echo custom_form_input('Video', [
+                    'name'          => 'movie-video',
+                    'class'         => 'form-control',
+                    'placeholder'   => 'Movie Trailer',
+                    'value'         => set_value('movie-video')
+                ]); ?>
+
                 <?php echo form_error('movie-image'); ?>
                 <?php echo custom_form_upload('Choose Image', [
                     'type'          => 'file',

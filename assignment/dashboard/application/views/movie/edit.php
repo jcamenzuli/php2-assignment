@@ -36,6 +36,14 @@
                     'value'         => $movie['director'] ?: set_value('movie-director')
                 ]); ?>
 
+                <?php echo form_error('movie-vido'); ?>
+                <?php echo custom_form_input('Video', [
+                    'name'          => 'movie-video',
+                    'class'         => 'form-control',
+                    'placeholder'   => 'Movie Trailer',
+                    'value'         => $movie['video'] ?: set_value('movie-video')
+                ]); ?>
+
                 <img src="http://assignment.local/uploads/movies/images/<?php echo $movie['image']; ?>" alt="" class="d-block w-100 mb-3">
 
                 <?php echo form_error('movie-image'); ?>

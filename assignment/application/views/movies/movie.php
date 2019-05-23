@@ -12,7 +12,7 @@
                             </div>
                             <div class="d-flex">
         						<a class="btn btn-danger btn-lg mx-2" href="#">Book Tickets</a>
-                                <a class="btn btn-dark btn-lg mx-2" href="#">Watch Trailer</a>
+                                <a class="btn btn-dark btn-lg mx-2" href="<?php echo $movie['video']; ?>" target="_blank">Watch Trailer</a>
         				</div>
                 </div>
                 <div class="poster">
