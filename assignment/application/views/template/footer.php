@@ -1,7 +1,7 @@
 <footer>
 <div class="row justify-content-center">
 	<div class="col-md-5 text-center">
-		<img src="img/fullscreen.png" class="footerlogo" alt="logo">
+		<img src="<?php echo base_url('img/fullscreen.png'); ?>" class="footerlogo" alt="logo">
 		<p class="footertext mt-3"> The first IMAX cinema in Malta</p>
 		<strong>Contact Info</strong>
 		<p class="mt-3">contactus@fullscreen.com</p>

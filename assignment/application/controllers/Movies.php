@@ -3,6 +3,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Movies extends CI_Controller {
 
+    var $text_folder = 'uploads/movies/text';
+    var $images_folder = 'uploads/movies/images';
+
 	/**
 	 * Index Page for this controller.
 	 *
@@ -36,6 +39,9 @@ class Movies extends CI_Controller {
 	{
         $movie = $this->movie_model->get_movie($slug);
 
+        $movie['description'] = read_file("{$this->text_folder}/{$movie['id']}.txt");
+        $movie['image'] = $this->_get_image_path($movie['id']);
+
         $data = [
             'movie' => $movie
         ];
@@ -44,5 +50,17 @@ class Movies extends CI_Controller {
         $this->load->view('template/navbar');
         $this->load->view('movies/movie', $data);
         $this->load->view('template/footer');
+	}
+
+
+	// Looks for an image with a particular ID and returns the path.
+	private function _get_image_path($id, $to_array = FALSE)
+	{
+		// Use glob to get all the images matching this name.
+		$files = glob("{$this->images_folder}/{$id}.*");
+		if ($to_array) return $files;
+
+		if (count($files) > 0) return $files[0];
+		return '';
 	}
 }

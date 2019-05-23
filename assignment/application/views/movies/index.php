@@ -7,7 +7,7 @@
                     <h1 class="title">John</h1>
                 	<h1 class="title">Wick <span>3</span></h1>
 					<div class="d-flex">
-						<a class="btn btn-danger btn-lg mx-2" href="<?php echo site_url('movie')?>">Book Tickets</a>
+						<a class="btn btn-danger btn-lg mx-2" href="#nowshowing">Book Tickets</a>
 						<a class="youtube" href="https://www.youtube.com/watch?v=M7XM597XO94" target="_blank">
 							<i class="fab fa-youtube fa-4x d-block"></i>
 						</a>
@@ -38,9 +38,10 @@
 				<div class="col-md-4">
 					<div class="nowshowing">
 						<a href="<?php echo site_url("movies/view/{$movie['slug']}"); ?>">
-                            <img src="<?php echo base_url('img/marvel.jpg') ?>" class="moviesNow" alt="marvel"/></a>
-						<h3><?php echo $movie['title']; ?></h3>
-						<h4><?php echo $movie['movie_genre'] ?> <?php echo $movie['runtime']. "minutes" ?></h4>
+                            <img src="<?php echo base_url($images); ?>" class="moviesNow"/>
+                            <h3 class="filmTitle"><?php echo $movie['title']; ?></h3>
+                            <p>Duration: <?php echo $movie['runtime']. " minutes" ?></p>
+                        </a>
 					</div>
 				</div>
 <?php endforeach; ?>

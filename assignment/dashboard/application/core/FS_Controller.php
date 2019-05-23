@@ -116,11 +116,6 @@ class FS_Controller extends CI_Controller
             'url'       => '/'
         ];
 
-        $nav[] = [
-            'title'     => 'New Article',
-            'icon'      => 'fas fa-newspaper',
-            'url'       => 'article/create'
-        ];
 
         if ($this->system->check_permission('MANAGE_USERS'))
         {

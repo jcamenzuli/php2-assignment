@@ -4,10 +4,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Movie extends FS_Controller
 {
 	// This is the folder path all text will upload to.
-	var $text_folder = 'uploads/movies/text';
+	var $text_folder = '../uploads/movies/text';
 
 	// This is the folder path all text will upload to.
-	var $images_folder = 'uploads/movies/images';
+	var $images_folder = '../uploads/movies/images';
 
 	// Load the necessary libraries
 	function __construct()
@@ -138,12 +138,13 @@ class Movie extends FS_Controller
 			return $this->create();
 		}
 
+
 		// 4. Get the inputs from the form.
 		$title		= $this->input->post('movie-title');
         $runtime    = $this->input->post('movie-runtime');
 		$description	= $this->input->post('movie-description');
         $director       =$this->input->post('movie-director');
-		$genre = $this->input->post('movie-genre') ?: [];
+		$genre = $this->input->post('movie-genres') ?: [];
 
 		// 5. Try to insert the data in its tables, and get back the ID.
 		$movie_id = $this->movie_model->create_movie($title, $genre, $runtime, $director);

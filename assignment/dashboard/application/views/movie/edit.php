@@ -36,7 +36,7 @@
                     'value'         => $movie['director'] ?: set_value('movie-director')
                 ]); ?>
 
-                <img src="<?php echo base_url($movie['image']); ?>" alt="" class="d-block w-100 mb-3">
+                <img src="http://assignment.local/uploads/movies/images/<?php echo $movie['image']; ?>" alt="" class="d-block w-100 mb-3">
 
                 <?php echo form_error('movie-image'); ?>
                 <?php echo custom_form_upload('Choose Image', [

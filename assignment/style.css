@@ -40,6 +40,14 @@ body {
   color: red;
 }
 
+#nowshowing .filmTitle{
+    font-weight: bold;
+    font-size: 30px;
+}
+
+#nowshowing a{
+    text-decoration: none;
+}
 .logo {
   width: 200px;
   height: 45px;
@@ -74,9 +82,6 @@ a:visited {
   color: white;
 }
 
-a:hover {
-  color:#ED2024;
-}
 
 .home-wrap {
   width: 100%;
@@ -182,8 +187,9 @@ h1.heading{
 }
 
 .textDuration{
-  margin-bottom: 20px;
+  margin-bottom: -10px;
 }
+
 
 .title-tickets {
     font-size: 4rem;
@@ -191,6 +197,7 @@ h1.heading{
     margin-top: 180px;
     margin-bottom: 30px;
 }
+
 
 .narrow{
   width: 75%;
