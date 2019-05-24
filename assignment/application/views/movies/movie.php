@@ -11,7 +11,7 @@
                                 <p class="text-sm-left"><?php echo $movie['description']; ?></p>
                             </div>
                             <div class="d-flex">
-        						<a class="btn btn-danger btn-lg mx-2" href="#">Book Tickets</a>
+        						<a class="btn btn-danger btn-lg mx-2" href="<?php echo site_url("movies/bookings/{$movie['slug']}"); ?>">Book Tickets</a>
                                 <a class="btn btn-dark btn-lg mx-2" href="<?php echo $movie['video']; ?>" target="_blank">Watch Trailer</a>
         				</div>
                 </div>

@@ -24,4 +24,22 @@ class Movie_model extends CI_Model
                     ->get_where('tbl_movies a', ['slug' => $slug])
                     ->row_array();
     }
+
+    public function now_showing()
+    {
+        return $this->db->select('*')
+                        ->where('releasedate <', time())
+                        ->order_by('title')
+                        ->get('tbl_movies')
+                        ->result_array();
+    }
+
+    public function coming_soon()
+    {
+        return $this->db->select('*')
+                        ->where('releasedate >', time())
+                        ->order_by('title')
+                        ->get('tbl_movies')
+                        ->result_array();
+    }
 }

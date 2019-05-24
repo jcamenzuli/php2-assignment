@@ -23,10 +23,14 @@ class Movies extends CI_Controller {
 	 */
 	public function index()
 	{
-        $movies = $this->movie_model->get_movies();
+
+        //$movies = $this->movie_model->get_movies();
+        //$movies =
+        //$comingsoon =
 
         $data = [
-            'movies' => $movies
+            'movies'        => $this->movie_model->now_showing(),
+            'comingsoon'    => $this->movie_model->coming_soon()
         ];
 
         $this->load->view('template/header');
@@ -51,6 +55,26 @@ class Movies extends CI_Controller {
         $this->load->view('movies/movie', $data);
         $this->load->view('template/footer');
 	}
+
+    public function bookings($slug)
+    {
+        $data = [
+            'movie'        => $this->movie_model->get_movie($slug),
+        ];
+
+        $this->load->view('template/header');
+        $this->load->view('template/navbar');
+        $this->load->view('movies/bookings', $data);
+        $this->load->view('template/footer');
+    }
+
+    public function tickets($slug)
+    {
+        $this->load->view('template/header');
+        $this->load->view('template/navbars');
+        $this->load->view('movies/tickets', $data);
+        $this->load->view('template/footer');
+    }
 
 
 	// Looks for an image with a particular ID and returns the path.

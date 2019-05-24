@@ -48,6 +48,10 @@ body {
 #nowshowing a{
     text-decoration: none;
 }
+
+#comingsoon a{
+    text-decoration: none;
+}
 .logo {
   width: 200px;
   height: 45px;
@@ -206,12 +210,13 @@ h1.heading{
 }
 
 .narrow h1{
-  font-size: 10rem;
+  font-size: 9rem;
 }
 
 .poster {
     margin: auto;
-    padding-top: 100px;
+    margin-top: 50px;
+    margin-bottom: 50px;
     width: 26rem;
     text-align: center;
 }

@@ -22,7 +22,8 @@ class Movie extends FS_Controller
 	public function index()
 	{
 		$data = [
-			'movies'	=> $this->movie_model->get_movies()
+		//	'movies'	=> $this->movie_model->get_movies()
+            'movies'	=> $this->movie_model->get_movies(),
 		];
 
 		$this->build('movie/index', $data);
@@ -130,6 +131,11 @@ class Movie extends FS_Controller
 				'label'	=> 'Video',
 				'rules' => 'required'
 			],
+            [
+				'field'	=> 'movie-releasedate',
+				'label'	=> 'Release Date',
+				'rules' => 'required'
+			],
 			[
 				'field'	=> 'movie-image',
 				'label' => 'Image',
@@ -150,10 +156,14 @@ class Movie extends FS_Controller
 		$description	= $this->input->post('movie-description');
         $director       =$this->input->post('movie-director');
         $video          =$this->input->post('movie-video');
+        $release          =$this->input->post('movie-releasedate');
 		$genre          =$this->input->post('movie-genres') ?: [];
 
+        $release = str_replace('/', '-', $release);
+        $release = strtotime($release);
+
 		// 5. Try to insert the data in its tables, and get back the ID.
-		$movie_id = $this->movie_model->create_movie($title, $genre, $runtime, $director, $video);
+		$movie_id = $this->movie_model->create_movie($title, $genre, $runtime, $director, $video, $release);
 		if ($movie_id === FALSE)
 		{
 			exit("Your movie could not be posted. Please go back and try again.");
@@ -198,6 +208,11 @@ class Movie extends FS_Controller
             [
 				'field'	=> 'movie-director',
 				'label'	=> 'Director',
+				'rules' => 'required'
+			],
+            [
+				'field'	=> 'movie-releasedate',
+				'label'	=> 'Release Date',
 				'rules' => 'required'
 			],
             [

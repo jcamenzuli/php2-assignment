@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Seats extends CI_Controller {
+class Booking extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -18,8 +18,15 @@ class Seats extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function index()
-	{
-		$this->load->view('movies/seats');
-	}
+	// public function bookings($slug)
+	// {
+    //     $data = [
+    //         'movie'        => $this->movie_model->get_movie($slug),
+    //     ];
+    //
+    //     $this->load->view('template/header');
+    //     $this->load->view('template/navbar');
+    //     $this->load->view('movies/view/bookings', $data);
+    //     $this->load->view('template/footer');
+	// }
 }

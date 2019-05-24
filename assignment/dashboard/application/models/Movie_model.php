@@ -3,7 +3,7 @@
 class Movie_model extends CI_Model
 {
     // Creates an article and assigns its categories.
-    public function create_movie($title, $genre, $runtime, $director, $video)
+    public function create_movie($title, $genre, $runtime, $director, $video, $release)
     {
         // Create a slug from the title, and make sure we have categories.
         $slug = url_title($title, 'dash', TRUE);
@@ -19,6 +19,7 @@ class Movie_model extends CI_Model
                 'runtime'       => $runtime,
                 'director'      => $director,
                 'video'         => $video,
+                'releasedate'   => $release,
                 'slug'           => $slug
             ];
             $this->db->insert('tbl_movies', $movies);
@@ -74,6 +75,25 @@ class Movie_model extends CI_Model
     public function get_movies()
     {
         return $this->db->order_by('title')
+                        ->get('tbl_movies')
+                        ->result_array();
+    }
+
+
+    public function now_showing()
+    {
+        return $this->db->select('*')
+                        ->where('releasedate <', time())
+                        ->order_by('title')
+                        ->get('tbl_movies')
+                        ->result_array();
+    }
+
+    public function coming_soon()
+    {
+        return $this->db->select('*')
+                        ->where('releasedate >', time())
+                        ->order_by('title')
                         ->get('tbl_movies')
                         ->result_array();
     }

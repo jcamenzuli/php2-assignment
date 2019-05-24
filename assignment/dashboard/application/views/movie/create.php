@@ -44,6 +44,14 @@
                     'value'         => set_value('movie-video')
                 ]); ?>
 
+                <?php echo form_error('movie-releasedate'); ?>
+                <?php echo custom_form_input('Release Date', [
+                    'name'          => 'movie-releasedate',
+                    'class'         => 'form-control',
+                    'placeholder'   => 'DD/MM/YYYY',
+                    'value'         => set_value('movie-releasedate')
+                ]); ?>
+
                 <?php echo form_error('movie-image'); ?>
                 <?php echo custom_form_upload('Choose Image', [
                     'type'          => 'file',

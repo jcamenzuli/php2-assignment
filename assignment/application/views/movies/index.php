@@ -62,29 +62,18 @@
 			</div>
 			<div class="row text-center">
 
+<?php foreach($comingsoon as $movie):
+    $images = glob("uploads/movies/images/{$movie['id']}.*");
+    if (count($movie) > 0) $images = $images[0];
+ ?>
 				<div class="col-md-4">
 					<div class="nowshowing">
-						<a href="#"><img src="img/marvel.jpg" class="moviesNow" alt="marvel"/></a>
-						<h3>Captain Marvel</h3>
-						<p class="textDuration">Duration: 180 min</p>
+					    <img src="<?php echo base_url($images); ?>" class="moviesNow"/>
+						<h3 class="filmTitle"><?php echo $movie['title']; ?></h3>
+						<p>Release Date: <?php echo date('d M Y ', $movie['releasedate']) ?></p>
 					</div>
 				</div>
-
-				<div class="col-md-4">
-					<div class="nowshowing">
-						<a href="#"><img src="img/marvel.jpg" class="moviesNow" alt="marvel"/></a>
-						<h3>Captain Marvel</h3>
-						<p class="textDuration">Duration: 180 min</p>
-					</div>
-				</div>
-
-				<div class="col-md-4">
-					<div class="nowshowing">
-						<a href="#"><img src="img/marvel.jpg" class="moviesNow" alt="marvel"/></a>
-						<h3>Captain Marvel</h3>
-						<p class="textDuration">Duration: 180 min</p>
-					</div>
-				</div>
+<?php endforeach; ?>
 			</div>
 			<!--- End of Row -->
 		</div>
