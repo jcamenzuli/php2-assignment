@@ -26,13 +26,12 @@
 				    </div>
                 </div>
         <div class="poster row">
-            <a href="#"><img src="img/captain-marvel.jpg" class="poster" alt="marvel"/></a>
-            <div class="detail-movie col row mt-3">
-                <h5>123 Min</h5>
-                <h5 class="ml-4">Genre: Action, Adventure, Sci-Fi</h5>
-                    <hr width="100%" size="3" color="#FFFFFF">
-                        <h4>Cinema 16</h4>
-            </div>
+
+        <img src="<?php echo base_url($movie['image']); ?>" class="posterticket"/>
+                <h3 class="filmTitle mx-auto"><?php echo $movie['title']; ?></h3>
+                <br>
+
+                <h5 class="mx-auto">Genre: <?php echo $movie['movie_genre']; ?></h5>
         </div>
     </div>
 </div>

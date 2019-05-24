@@ -221,6 +221,14 @@ h1.heading{
     text-align: center;
 }
 
+.posterticket
+{
+    margin-top: 34px;
+    margin-bottom: 34px;
+    width: 23.4rem;
+    height:31.25rem;
+}
+
 .seat {
     float: left;
     display: block;

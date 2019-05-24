@@ -56,11 +56,18 @@ class Movies extends CI_Controller {
         $this->load->view('template/footer');
 	}
 
-    public function bookings($slug)
+    public function bookings($slug = NULL)
     {
+        $movie = $this->movie_model->get_movie($slug);
+
+        $movie['description'] = read_file("{$this->text_folder}/{$movie['id']}.txt");
+        $movie['image'] = $this->_get_image_path($movie['id']);
+
         $data = [
-            'movie'        => $this->movie_model->get_movie($slug),
+            'movie' => $movie
         ];
+
+
 
         $this->load->view('template/header');
         $this->load->view('template/navbar');
@@ -75,6 +82,7 @@ class Movies extends CI_Controller {
         $this->load->view('movies/tickets', $data);
         $this->load->view('template/footer');
     }
+
 
 
 	// Looks for an image with a particular ID and returns the path.
