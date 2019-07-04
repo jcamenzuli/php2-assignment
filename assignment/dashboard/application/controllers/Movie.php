@@ -136,6 +136,11 @@ class Movie extends FS_Controller
 				'label'	=> 'Release Date',
 				'rules' => 'required'
 			],
+            [
+				'field'	=> 'movie-lastdate',
+				'label'	=> 'Last Date',
+				'rules' => 'required'
+			],
 			[
 				'field'	=> 'movie-image',
 				'label' => 'Image',
@@ -157,13 +162,17 @@ class Movie extends FS_Controller
         $director       =$this->input->post('movie-director');
         $video          =$this->input->post('movie-video');
         $release          =$this->input->post('movie-releasedate');
+        $last          =$this->input->post('movie-lastdate');
 		$genre          =$this->input->post('movie-genres') ?: [];
 
         $release = str_replace('/', '-', $release);
         $release = strtotime($release);
 
+        $last   = str_replace('/', '-', $last);
+        $last   = strtotime($last);
+        
 		// 5. Try to insert the data in its tables, and get back the ID.
-		$movie_id = $this->movie_model->create_movie($title, $genre, $runtime, $director, $video, $release);
+		$movie_id = $this->movie_model->create_movie($title, $genre, $runtime, $director, $video, $release, $last);
 		if ($movie_id === FALSE)
 		{
 			exit("Your movie could not be posted. Please go back and try again.");
@@ -213,6 +222,11 @@ class Movie extends FS_Controller
             [
 				'field'	=> 'movie-releasedate',
 				'label'	=> 'Release Date',
+				'rules' => 'required'
+			],
+            [
+				'field'	=> 'movie-lastdate',
+				'label'	=> 'Last Date',
 				'rules' => 'required'
 			],
             [
@@ -329,5 +343,52 @@ class Movie extends FS_Controller
 
 		if (count($files) > 0) return $files[0];
 		return '';
+	}
+
+    public function times($slug = NULL, $submit = FALSE)
+	{
+		if (!$movie = $this->movie_model->get_movie($slug)){
+			show_404();
+		}
+
+		if ($submit !== FALSE)
+		{
+			return $this->_do_time($movie);
+		}
+
+		$data = [
+			'movie'			=> $movie,
+			'theatre'		=> $this->movie_model->get_theatre_array(),
+		];
+
+		$this->load->library(['user_agent' => 'ua']);
+
+		$this->build('movie/times', $data);
+	}
+
+    private function _do_time($movie)
+	{
+		$start			= $this->input->post('releasedate');
+		$end			= $this->input->post('lastdate');
+		$times			= explode(',', $this->input->post('show-time'));
+		$theatre		= $this->input->post('theatre');
+
+		// 4. Get the inputs from the form.
+		$days = ((strtotime($end) - strtotime($start)) / 60 / 60 / 24) + 1;
+		$i = 0;
+		$timestamps = [];
+
+		while ($i < $days)
+		{
+			foreach ($times as $time) $timestamps[] = strtotime("{$start} {$time}" . "+{$i} days");
+			$i++;
+		}
+
+		if (!$this->movie_model->insert_Date_Time($movie['movie_id'], $timestamps, $theatre))
+		{
+			exit("The date cannot be added");
+		}
+
+		redirect('movie/index');
 	}
 }

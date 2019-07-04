@@ -31,6 +31,9 @@
                                 <a href="<?php echo site_url("movie/delete/{$movie['slug']}"); ?>" class="d-block mx-2">
                                     <i class="icon fas fa-trash"></i>
                                 </a>
+                                <a href="<?php echo site_url("movie/times/{$movie['slug']}"); ?>" class="d-block mx-2">
+                                    <i class="fas fa-stopwatch"></i>
+                                </a>
                             </td>
                         </tr>
 <?php endforeach; endif; ?>

@@ -3,7 +3,7 @@
 class Movie_model extends CI_Model
 {
     // Creates an article and assigns its categories.
-    public function create_movie($title, $genre, $runtime, $director, $video, $release)
+    public function create_movie($title, $genre, $runtime, $director, $video, $release, $lastdate)
     {
         // Create a slug from the title, and make sure we have categories.
         $slug = url_title($title, 'dash', TRUE);
@@ -20,6 +20,7 @@ class Movie_model extends CI_Model
                 'director'      => $director,
                 'video'         => $video,
                 'releasedate'   => $release,
+                'lastdate'      => $lastdate,
                 'slug'           => $slug
             ];
             $this->db->insert('tbl_movies', $movies);
@@ -83,7 +84,7 @@ class Movie_model extends CI_Model
     public function now_showing()
     {
         return $this->db->select('*')
-                        ->where('releasedate <', time())
+                        ->where('releasedate <', time() && 'lastdate >', time())
                         ->order_by('title')
                         ->get('tbl_movies')
                         ->result_array();
@@ -181,4 +182,18 @@ class Movie_model extends CI_Model
         // to check that this query worked, we'll check the affected rows.
         return $this->db->affected_rows() == 1;
     }
+
+    public function get_theatre()
+    {
+        return $this->db->get('tbl_theatre')->result_array();
+    }
+
+    public function get_theatre_array()
+    {
+        $results = $this->get_theatre();
+        $theatre = [];
+
+        // fill in the blank array using a foreach loop.
+        foreach ($results as $row) $theatre[$row['theatre_id']] = $row['theatre_name'];
+        return $theatre;    }
 }

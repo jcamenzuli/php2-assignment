@@ -52,12 +52,21 @@
                     'value'         => set_value('movie-releasedate')
                 ]); ?>
 
+                <?php echo form_error('movie-lastdate'); ?>
+                <?php echo custom_form_input('Last Date', [
+                    'name'          => 'movie-lastdate',
+                    'class'         => 'form-control',
+                    'placeholder'   => 'DD/MM/YYYY',
+                    'value'         => set_value('movie-lastdate')
+                ]); ?>
+
                 <?php echo form_error('movie-image'); ?>
                 <?php echo custom_form_upload('Choose Image', [
                     'type'          => 'file',
                     'name'          => 'movie-image',
                     'accept'        => 'image/*'
                 ]); ?>
+
             </div>
         </div>
     </div>
