@@ -3,21 +3,19 @@
         <div class="card">
             <div class="card-body">
 
-                <script>
-                    $( function() {
-                    $( "#datepicker" ).datepicker();
-                    } );
-                </script>
 
-                <?php echo form_error('show-time'); ?>
-                <?php echo custom_form_input('Time', [
-                    'name'          => 'show-time',
+
+                <?php echo form_error('show-date'); ?>
+                <?php echo custom_form_input('Date', [
+                    'name'          => 'show-date',
                     'class'         => 'form-control',
-                    'placeholder'   => 'Showing time',
-                    'value'         => set_value('show-time')
+                    'placeholder'   => 'Showing Date',
+                    'value'         => set_value('show-date')
                 ]); ?>
 
-                <?php echo form_dropdown('cinema', $cinema, set_value('cinema'));
+                <?php echo form_dropdown('show-theatre', $theatre, set_value('show-theatre'));
+                ?>
+                <?php echo form_dropdown('show-time', $time, set_value('show-time'));
                 ?>
 
             </div>
@@ -28,4 +26,6 @@
             <button type="submit" name="action" value="finish" class="btn btn-primary w-100">Submit</button>
         </div>
     </div>
+
+
 <?php echo form_close(); ?>

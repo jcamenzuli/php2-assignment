@@ -16,6 +16,7 @@ class Movie extends FS_Controller
 
 		// load the libraries after the code has been set.
 		$this->load->model('movie_model');
+        $this->load->model('Screening_model');
 		$this->load->helper('file');
 	}
 
@@ -170,7 +171,7 @@ class Movie extends FS_Controller
 
         $last   = str_replace('/', '-', $last);
         $last   = strtotime($last);
-        
+
 		// 5. Try to insert the data in its tables, and get back the ID.
 		$movie_id = $this->movie_model->create_movie($title, $genre, $runtime, $director, $video, $release, $last);
 		if ($movie_id === FALSE)
@@ -359,6 +360,7 @@ class Movie extends FS_Controller
 		$data = [
 			'movie'			=> $movie,
 			'theatre'		=> $this->movie_model->get_theatre_array(),
+            'time'          => array("9" => "9:00AM", "12" => "12:00PM", "15" => "3:00PM", "19" => "7:00PM")
 		];
 
 		$this->load->library(['user_agent' => 'ua']);
@@ -368,23 +370,13 @@ class Movie extends FS_Controller
 
     private function _do_time($movie)
 	{
-		$start			= $this->input->post('releasedate');
-		$end			= $this->input->post('lastdate');
-		$times			= explode(',', $this->input->post('show-time'));
-		$theatre		= $this->input->post('theatre');
-
-		// 4. Get the inputs from the form.
-		$days = ((strtotime($end) - strtotime($start)) / 60 / 60 / 24) + 1;
-		$i = 0;
-		$timestamps = [];
-
-		while ($i < $days)
-		{
-			foreach ($times as $time) $timestamps[] = strtotime("{$start} {$time}" . "+{$i} days");
-			$i++;
-		}
-
-		if (!$this->movie_model->insert_Date_Time($movie['movie_id'], $timestamps, $theatre))
+		$date			=  $this->input->post('show-date');
+		$theatre		= $this->input->post('show-theatre');
+        $time_input           = $this->input->post('show-time');
+        $date = str_replace('/', '-', $date);
+        $date = strtotime($date);
+        $time = $date + ($time_input * 60 * 60);
+		if (!$this->Screening_model->create_screening($time,$movie['id'],$theatre))
 		{
 			exit("The date cannot be added");
 		}

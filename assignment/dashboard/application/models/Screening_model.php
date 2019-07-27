@@ -7,10 +7,25 @@ class Screening_model extends CI_Model
         $this->db->trans_start();
 
         $screenings = [
-            'time'          =>$time,
-            'movie_id'      =>$movie,
-            'theatre_id'    =>$theatre
+            'movies_id'      =>$movie,
+            'movie_time'     =>$time,
+            'theatre_id'     =>$theatre
         ];
+        // 3. Gives the instructions for the transaction.
+        $this->db->insert('tbl_movie_time', $screenings);
+        $insert_id = $this->db->insert_id();
 
+        // 4. End of transaction
+        $this->db->trans_complete();
+
+        // 5. If there are no errors, we can commit the transaction.
+        if($this->db->trans_status() === FALSE)
+        {
+            $this->db->trans_rollback();
+            return FALSE;
+        } else {
+            $this->db->trans_commit();
+            return $insert_id;
+        }
     }
 }

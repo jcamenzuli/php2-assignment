@@ -64,7 +64,8 @@ class Movies extends CI_Controller {
         $movie['image'] = $this->_get_image_path($movie['id']);
 
         $data = [
-            'movie' => $movie
+            'movie' => $movie,
+            'screenings'    =>$this->movie_model->get_movie_screenings($slug)
         ];
 
 

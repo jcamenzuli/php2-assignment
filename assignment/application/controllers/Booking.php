@@ -29,4 +29,5 @@ class Booking extends CI_Controller {
     //     $this->load->view('movies/view/bookings', $data);
     //     $this->load->view('template/footer');
 	// }
+    
 }
