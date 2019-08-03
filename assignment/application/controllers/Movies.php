@@ -21,6 +21,15 @@ class Movies extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
+    function __construct()
+    {
+        parent::__construct();
+
+        $this->load->model('Movie_model');
+        $this->load->model('Screening_model');
+        $this->load->model('Booking_model');
+
+    }
 	public function index()
 	{
 
@@ -56,18 +65,21 @@ class Movies extends CI_Controller {
         $this->load->view('template/footer');
 	}
 
-    public function bookings($slug = NULL)
+    public function bookings($slug = NULL, $submit = FALSE)
     {
         $movie = $this->movie_model->get_movie($slug);
 
         $movie['description'] = read_file("{$this->text_folder}/{$movie['id']}.txt");
         $movie['image'] = $this->_get_image_path($movie['id']);
 
+        if($submit != FALSE)
+        {
+            return $this->seating();
+        }
         $data = [
             'movie' => $movie,
             'screenings'    =>$this->movie_model->get_movie_screenings($slug)
         ];
-
 
 
         $this->load->view('template/header');
@@ -96,4 +108,66 @@ class Movies extends CI_Controller {
 		if (count($files) > 0) return $files[0];
 		return '';
 	}
+
+    public function seating()
+    {
+        $screening = $this->input->post("screen-time");
+
+        redirect("movies/seats/".$screening);
+    }
+
+    // Builds the page to select seats
+    public function seats($id = NULL, $submit = FALSE)
+    {
+        if(!$screening = $this->Screening_model->get_screening($id))
+        {
+            show_404();
+        }
+
+        if($submit != FALSE)
+        {
+            return $this->add_seats();
+        }
+
+        $data =[
+            'screening' => $screening
+        ];
+
+        $this->load->view('template/header');
+        $this->load->view('template/navbar');
+        $this->load->view('movies/seats', $data);
+        $this->load->view('template/footer');
+    }
+
+    public function add_seats()
+    {
+        $this->load->library(['form_validation' => 'fv']);
+
+        $this->fv->set_rules([
+            [
+                'field' => 'email',
+                'label' => 'email',
+                'rules' => 'required|valid_email'
+            ]
+        ]);
+
+        //validation
+        if($this->fv->run() === FALSE)
+        {
+            return $this->create();
+        }
+
+        // Gets the input from the form
+        $screening = $this->input->post('screening');
+        $seats     = $this->input->post('seats');
+        $email     = $this->input->post('email');
+
+        $booking_id = $this->Booking_model->create_booking($screening,$seats,$email);
+        if($booking_id === FALSE)
+        {
+            exit("Booking was not created");
+        }
+
+        redirect('/');
+    }
 }
