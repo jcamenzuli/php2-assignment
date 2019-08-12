@@ -24,7 +24,6 @@
         <img src="<?php echo base_url($movie['image']); ?>" class="posterticket"/>
                 <h3 class="filmTitle mx-auto"><?php echo $movie['title']; ?></h3>
                 <br>
-                <h5 class="mx-auto">Genre: <?php echo $movie['movie_genre']; ?></h5>
         </div>
     </div>
 </div>
