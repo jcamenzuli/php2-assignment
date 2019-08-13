@@ -74,6 +74,7 @@ class Movies extends CI_Controller {
 
         if($submit != FALSE)
         {
+            // in case of any error/bug
             return $this->seating();
         }
         $data = [
@@ -90,6 +91,7 @@ class Movies extends CI_Controller {
 
     public function tickets($slug)
     {
+        // loading views for tickets page
         $this->load->view('template/header');
         $this->load->view('template/navbars');
         $this->load->view('movies/tickets', $data);
@@ -141,6 +143,7 @@ class Movies extends CI_Controller {
 
     public function add_seats()
     {
+        // function that add seats in the theatre
         $this->load->library(['form_validation' => 'fv']);
 
         $this->fv->set_rules([

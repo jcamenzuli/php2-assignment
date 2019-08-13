@@ -4,6 +4,7 @@ class Screening_model extends CI_Model
 {
     public function create_screening($time, $movie, $theatre)
     {
+        // After the movie was successfully created, a screening will be created
         $this->db->trans_start();
 
         $screenings = [

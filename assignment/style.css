@@ -239,6 +239,10 @@ h1.heading{
     border-radius: 6px;
 }
 
+.seat-select {
+    display: none;
+    margin:;
+}
 
 .seat:hover{
     background: #E23866;
@@ -285,14 +289,8 @@ footer {
   height: 60px;
 
 }
-
 .footertext {
   margin-top: 0.2rem;
-}
-
-.container
-{
-    margin:20rem;
 }
 
 

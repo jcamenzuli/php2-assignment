@@ -27,6 +27,7 @@ class Movie_model extends CI_Model
 
     public function now_showing()
     {
+        // used to show all movies available
         return $this->db->select('*')
                         ->where('releasedate <', time())
                         ->order_by('title')
@@ -36,6 +37,7 @@ class Movie_model extends CI_Model
 
     public function coming_soon()
     {
+        // used to show movies that will soon be available
         return $this->db->select('*')
                         ->where('releasedate >', time())
                         ->order_by('title')

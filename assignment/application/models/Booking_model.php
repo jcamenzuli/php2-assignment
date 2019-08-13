@@ -15,7 +15,7 @@ class Booking_model extends CI_Model
             {
                 $bookings[] = [
                     'time_id'      => $screening,
-                    'seat_no'         => $seat,
+                    'seat_no'      => $seat,
                     'email'        => $email
                 ];
             }
